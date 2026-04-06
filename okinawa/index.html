@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 沖繩七日自駕遊智能導航 App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f0fdf4; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .mapcode-badge { background-color: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-weight: bold; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Navbar / Header -->
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold"><i class="fa-solid fa-car-side mr-2"></i>Okinawa 2026</h1>
+                <p class="text-sm text-blue-100">七天六夜自駕戰略 (北起南訖)</p>
+            </div>
+            <div class="text-sm font-medium bg-blue-700 px-3 py-1 rounded-full">
+                <i class="fa-regular fa-calendar-days mr-1"></i> 7/25 - 8/1
+            </div>
+        </div>
+        <!-- Main Navigation Tabs -->
+        <nav class="flex overflow-x-auto bg-blue-700 text-sm md:text-base">
+            <button onclick="switchTab('itinerary')" class="tab-btn flex-1 py-3 px-4 font-semibold hover:bg-blue-800 bg-blue-800 focus:outline-none transition-colors" id="btn-itinerary">
+                <i class="fa-solid fa-map-location-dot mr-1"></i> 行程路線
+            </button>
+            <button onclick="switchTab('hotels')" class="tab-btn flex-1 py-3 px-4 font-semibold hover:bg-blue-800 focus:outline-none transition-colors" id="btn-hotels">
+                <i class="fa-solid fa-bed mr-1"></i> 住宿戰略
+            </button>
+            <button onclick="switchTab('info')" class="tab-btn flex-1 py-3 px-4 font-semibold hover:bg-blue-800 focus:outline-none transition-colors" id="btn-info">
+                <i class="fa-solid fa-triangle-exclamation mr-1"></i> 自駕與氣候
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+
+        <!-- TAB 1: 行程路線 (Itinerary) -->
+        <section id="itinerary" class="tab-content active">
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Days Sidebar -->
+                <div class="w-full md:w-1/3 bg-white rounded-xl shadow-md p-4 h-fit">
+                    <h2 class="text-lg font-bold mb-4 text-blue-600 border-b pb-2">選擇日程</h2>
+                    <ul class="space-y-2" id="day-list">
+                        <!-- JS generated days -->
+                    </ul>
+                </div>
+                
+                <!-- Day Details -->
+                <div class="w-full md:w-2/3">
+                    <div id="day-details" class="bg-white rounded-xl shadow-md p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2" id="detail-title">選擇左側日程</h2>
+                        <p class="text-gray-500 mb-4" id="detail-desc">這裡將顯示該日的詳細景點與Mapcode。</p>
+                        
+                        <div id="detail-spots" class="space-y-4">
+                            <!-- JS generated spots -->
+                        </div>
+
+                        <!-- Map Placeholder -->
+                        <div class="mt-6 rounded-lg overflow-hidden border border-gray-200 shadow-inner h-64 bg-gray-100 relative">
+                            <iframe id="map-frame" class="w-full h-full" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Okinawa&t=&z=9&ie=UTF8&iwloc=&output=embed"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: 住宿戰略 (Hotels) -->
+        <section id="hotels" class="tab-content">
+            <h2 class="text-2xl font-bold text-blue-600 mb-6"><i class="fa-solid fa-hotel mr-2"></i>分區住宿推薦清單</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- North -->
+                <div class="bg-white rounded-xl shadow-md p-5 border-t-4 border-green-500">
+                    <h3 class="font-bold text-lg mb-2">北部 (Day 1-3) <span class="text-sm font-normal text-gray-500">名護/本部町</span></h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bg-gray-50 p-3 rounded">
+                            <span class="font-bold text-blue-600">Orion 本部度假 SPA 飯店</span><br>
+                            ⭐ 4.5 | 鄰近水族館，翡翠海灘第一排
+                        </li>
+                        <li class="bg-gray-50 p-3 rounded">
+                            <span class="font-bold text-blue-600">里耶塔中山旅館</span><br>
+                            ⭐ 公寓式飯店，適合親子長天數停留
+                        </li>
+                    </ul>
+                </div>
+                <!-- Central -->
+                <div class="bg-white rounded-xl shadow-md p-5 border-t-4 border-yellow-500">
+                    <h3 class="font-bold text-lg mb-2">中部 (Day 4-5) <span class="text-sm font-normal text-gray-500">恩納/北谷</span></h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bg-gray-50 p-3 rounded">
+                            <span class="font-bold text-blue-600">蒙特利 SPA 度假酒店</span><br>
+                            ⭐ 4.5 | 恩納村，私人沙灘與人造浪泳池
+                        </li>
+                        <li class="bg-gray-50 p-3 rounded">
+                            <span class="font-bold text-blue-600">Lequ 沖繩北谷度假村</span><br>
+                            ⭐ 4.0 | 美國村核心，頂樓溫泉與無邊際泳池
+                        </li>
+                    </ul>
+                </div>
+                <!-- South -->
+                <div class="bg-white rounded-xl shadow-md p-5 border-t-4 border-red-500">
+                    <h3 class="font-bold text-lg mb-2">南部 (Day 6-7) <span class="text-sm font-normal text-gray-500">那霸/瀨長島</span></h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bg-gray-50 p-3 rounded">
+                            <span class="font-bold text-blue-600">嘉新酒店 (Collective)</span><br>
+                            ⭐ 5.0 | 國際通上唯一五星規格，購物極佳
+                        </li>
+                        <li class="bg-gray-50 p-3 rounded">
+                            <span class="font-bold text-blue-600">琉球溫泉瀨長島飯店</span><br>
+                            ⭐ 4.0 | 泡湯看飛機起降，離機場僅20分鐘
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: 自駕與氣候 (Info) -->
+        <section id="info" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Weather -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-orange-500 mb-4"><i class="fa-solid fa-sun mr-2"></i>夏季氣候與防護 (7/25-8/1)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <li><strong>極高溫注意：</strong> 平均氣溫 27°C-33°C，體感常突破 38°C。</li>
+                        <li><strong>紫外線指數：</strong> 11-12 (極高)，需強力物理與化學防曬。</li>
+                        <li><strong>颱風風險：</strong> 中等偏高。務必確認租車 NOC 政策及備用室內方案。</li>
+                        <li><strong>水分補充：</strong> 善用高密度便利商店補充補充電解質，預防熱衰竭。</li>
+                    </ul>
+                </div>
+                <!-- Driving -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4"><i class="fa-solid fa-road mr-2"></i>道路系統與導航規範</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                        <li><strong>左側行駛：</strong> 右駕左行，轉彎時務必再次確認車道。</li>
+                        <li><strong>Mapcode 導航：</strong> 山區訊號弱，車載導航輸入 Mapcode 最精確。</li>
+                        <li><strong>高速公路：</strong> 國道58號為中軸，那霸至許田交流道約90分鐘，建議配備ETC。</li>
+                        <li><strong>公車專用道：</strong> 那霸市區 07:00-09:00 及 17:30-19:00 嚴禁駛入。</li>
+                        <li><strong class="text-red-500">酒駕零容忍：</strong> 乘客亦需承擔連帶法律責任。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Food Bonus -->
+            <div class="mt-6 bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-bold text-green-600 mb-4"><i class="fa-solid fa-utensils mr-2"></i>沖繩長壽飲食推薦</h3>
+                <div class="flex flex-wrap gap-4">
+                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>阿古豬 (Agu):</strong> 百年古家 大家 (涮涮鍋)</span>
+                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>石垣牛:</strong> 琉球之牛 (北谷/恩納)</span>
+                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>沖繩麵 (Soba):</strong> 岸本食堂 (本部町)</span>
+                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>輕食:</strong> 豬肉蛋飯糰 (機場/國際通)</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App Logic -->
+    <script>
+        // 行程資料 (根據戰略報告提取)
+        const itineraryData = [
+            {
+                day: "Day 1-2",
+                title: "北部山原森林的生態與地質探索",
+                desc: "抵達那霸後直奔北部。7/25-26 晚間可參加【名護夏日祭典】。此階段專注於世界自然遺產與最北端景觀。",
+                mapQuery: "Okinawa+Kunigami",
+                spots: [
+                    { name: "大石林山", mapcode: "728 675 895*56", note: "熱帶喀斯特地形，神話聖地。搭乘接駁車，免費停車。", icon: "fa-mountain" },
+                    { name: "邊戶岬 & 茅打斷崖", mapcode: "728 737 180*28", note: "本島最北端，眺望太平洋與東海交界。注意海風極強。", icon: "fa-water" },
+                    { name: "古宇利島 (心形岩)", mapcode: "485 751 179", note: "跨越古宇利大橋，欣賞「古宇利藍」。周邊需付費停車(約100-300円)。", icon: "fa-heart" },
+                    { name: "名護夏日祭典 (活動)", mapcode: "名護漁港", note: "7/25-26 週末限定。體驗港口煙火與屋台美食，提早下午3點前往。", icon: "fa-fire" }
+                ]
+            },
+            {
+                day: "Day 3",
+                title: "本部半島海洋工藝與生活美學",
+                desc: "探索世界級水族館與傳統防風林聚落，品嚐在地阿古豬。",
+                mapQuery: "Okinawa+Churaumi+Aquarium",
+                spots: [
+                    { name: "美麗海水族館", mapcode: "553 075 797*74", note: "黑潮之海展缸。建議早上8:30或下午4點後進入避開人潮。停P7立體停車場。", icon: "fa-fish" },
+                    { name: "備瀨福木林道", mapcode: "導航至備瀨入口", note: "防風林綠色隧道，氣溫比外部低2-3度，適合午後騎單車。", icon: "fa-tree" },
+                    { name: "翡翠海灘 & 海豚秀", mapcode: "海洋博公園內", note: "水族館外圍免費景點，7月下旬有機會遇到煙火大會(需購票)。", icon: "fa-umbrella-beach" }
+                ]
+            },
+            {
+                day: "Day 4-5",
+                title: "中部西海岸異國融合與商業動態",
+                desc: "從自然景觀過渡至美日混合文化，進行水上活動與購物補給。",
+                mapQuery: "Okinawa+American+Village",
+                spots: [
+                    { name: "萬座毛 (恩納村)", mapcode: "206 312 038*55", note: "經典象鼻岩石灰岩景觀。新館有空調與在地工藝品。收費約100円。", icon: "fa-camera" },
+                    { name: "真榮田岬 (青之洞窟)", mapcode: "恩納村南端", note: "建議預約船潛進入避開人潮，因週末停車位極度緊張。", icon: "fa-water" },
+                    { name: "美國村 (北谷町)", mapcode: "33 526 450*63", note: "美式西岸風格，落日步道看夕陽最佳。廣大免費公共停車區。", icon: "fa-store" },
+                    { name: "AEON MALL 來客夢", mapcode: "中城村", note: "避暑首選，巨型商場一站式採買伴手禮 (LOFT, Bic Camera)。", icon: "fa-bag-shopping" }
+                ]
+            },
+            {
+                day: "Day 6",
+                title: "南部文化核心與地質見證",
+                desc: "回歸琉球王國歷史，體驗鐘乳石洞與最新飛機觀景聖地。",
+                mapQuery: "Okinawa+Senagajima",
+                spots: [
+                    { name: "首里城", mapcode: "33 161 497*55", note: "參觀重建參觀步道，見證匠人修復工藝。建議清晨抵達或預約停車。", icon: "fa-chess-rook" },
+                    { name: "文化王國與玉泉洞", mapcode: "南城市", note: "避暑勝地，洞內恆溫21°C。必看大鼓舞(Eisa)表演。", icon: "fa-drum" },
+                    { name: "瀨長島 (Umikaji Terrace)", mapcode: "33 002 602*06", note: "沖繩小希臘，吃幸福鬆餅看飛機起降與日落。週末沿線停車困難。", icon: "fa-plane" }
+                ]
+            },
+            {
+                day: "Day 7",
+                title: "那霸城市節奏與離境準備",
+                desc: "最後的城市採購、美食巡禮與還車物流整理。",
+                mapQuery: "Okinawa+Kokusai+Dori",
+                spots: [
+                    { name: "國際通 & 牧志公設市場", mapcode: "那霸市區", note: "奇蹟的一英里。可於市場買海鮮由二樓代工。若遇8/1可觀賞一萬人太鼓舞。", icon: "fa-shop" },
+                    { name: "那霸機場 (OKA) 離境", mapcode: "機場周邊租車點", note: "夏季還車潮易排隊，需提早抵達。二樓可買豬肉蛋飯糰做最後補給。", icon: "fa-plane-departure" }
+                ]
+            }
+        ];
+
+        // 頁籤切換邏輯
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-800');
+                el.classList.add('bg-blue-700');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('bg-blue-800');
+            document.getElementById('btn-' + tabId).classList.remove('bg-blue-700');
+        }
+
+        // 渲染行程清單
+        function renderItinerary() {
+            const dayList = document.getElementById('day-list');
+            
+            itineraryData.forEach((data, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <button onclick="showDayDetails(${index})" class="w-full text-left p-3 rounded-lg border border-gray-200 hover:bg-blue-50 focus:bg-blue-100 focus:border-blue-500 transition-all font-medium text-gray-700">
+                        <i class="fa-regular fa-calendar-check text-blue-500 w-5"></i> ${data.day} <span class="block text-xs text-gray-500 mt-1 font-normal truncate">${data.title}</span>
+                    </button>
+                `;
+                dayList.appendChild(li);
+            });
+
+            // 預設載入第一天
+            showDayDetails(0);
+        }
+
+        // 顯示單日詳細資訊
+        function showDayDetails(index) {
+            const data = itineraryData[index];
+            document.getElementById('detail-title').innerText = `${data.day}：${data.title}`;
+            document.getElementById('detail-desc').innerText = data.desc;
+            
+            // 更新地圖 (使用 Google Maps Embed API 佔位)
+            document.getElementById('map-frame').src = `https://maps.google.com/maps?q=${data.mapQuery}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
+
+            // 渲染景點
+            const spotsContainer = document.getElementById('detail-spots');
+            spotsContainer.innerHTML = '';
+            
+            data.spots.forEach(spot => {
+                spotsContainer.innerHTML += `
+                    <div class="border-l-4 border-blue-500 pl-4 py-2 bg-gray-50 rounded-r-lg">
+                        <div class="flex items-center justify-between mb-1">
+                            <h4 class="font-bold text-gray-800"><i class="fa-solid ${spot.icon} text-blue-500 mr-2 w-4"></i>${spot.name}</h4>
+                            <span class="mapcode-badge" title="Mapcode"><i class="fa-solid fa-location-crosshairs text-xs mr-1"></i>${spot.mapcode}</span>
+                        </div>
+                        <p class="text-sm text-gray-600">${spot.note}</p>
+                    </div>
+                `;
+            });
+        }
+
+        // 初始化
+        window.onload = renderItinerary;
+    </script>
+</body>
+</html>
