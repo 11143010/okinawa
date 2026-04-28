@@ -20,6 +20,14 @@ export const itineraryData = [
     foods: [
       { name: '幸ちゃんそば', area: '名護', type: '沖繩麵', note: '長途開車後補給首選' },
       { name: '百年古家 大家', area: '名護', type: '阿古豬', note: '古民家氛圍，建議預約' }
+    ],
+    timeline: [
+      { time: '08:30', activity: '那霸機場取車', note: '確認 ETC、保險與導航語言設定' },
+      { time: '09:30', activity: '上高速北上', note: '那霸 IC → 許田 IC，途中可在休息站補給' },
+      { time: '12:00', activity: '名護午餐', note: '幸ちゃんそば，預留 45 分鐘' },
+      { time: '13:30', activity: '大石林山健行', note: '步道約 60-90 分鐘，注意補水' },
+      { time: '16:00', activity: '邊戶岬 / 茅打バンタ', note: '拍照 + 觀景約 45-60 分鐘' },
+      { time: '18:30', activity: '名護晚餐與入住', note: '百年古家 大家用餐，晚間休息' }
     ]
   },
   {
@@ -43,6 +51,14 @@ export const itineraryData = [
     foods: [
       { name: '蝦蝦飯（Shrimp Wagon）', area: '古宇利島', type: '海景輕食', note: '橋頭附近人氣餐車' },
       { name: 'On the Beach CAFE', area: '今歸仁', type: '咖啡甜點', note: '海景休息站' }
+    ],
+    timeline: [
+      { time: '09:00', activity: '名護出發', note: '先走內陸避開橋邊停車尖峰' },
+      { time: '09:40', activity: '今歸仁城跡', note: '參觀約 60 分鐘，含展區步行' },
+      { time: '11:30', activity: '古宇利大橋 + 心形岩', note: '兩點合計約 90 分鐘' },
+      { time: '13:30', activity: '古宇利島午餐', note: '蝦蝦飯，夏季排隊建議早到' },
+      { time: '15:30', activity: '海景咖啡休息', note: 'On the Beach CAFE' },
+      { time: '18:00', activity: '返回住宿', note: '晚餐可就近安排在今歸仁/本部' }
     ]
   },
   {
@@ -68,6 +84,14 @@ export const itineraryData = [
       { name: '岸本食堂', area: '本部町', type: '沖繩麵', note: '老字號名店' },
       { name: '琉球の牛', area: '恩納/北谷', type: '燒肉', note: '建議先預約' },
       { name: '浜屋そば', area: '北谷', type: '沖繩麵', note: '美國村周邊效率高' }
+    ],
+    timeline: [
+      { time: '08:30', activity: '美麗海水族館', note: '開館即入場可避開人潮，停 P7' },
+      { time: '11:30', activity: '岸本食堂午餐', note: '熱門時段建議提前到店' },
+      { time: '13:30', activity: '備瀨福木林道', note: '散策 + 單車約 60 分鐘' },
+      { time: '15:30', activity: '萬座毛', note: '停留 45 分鐘，拍照觀景' },
+      { time: '17:30', activity: '美國村夕陽時段', note: '逛街與海邊散步' },
+      { time: '19:00', activity: '琉球の牛晚餐', note: '建議預約 19:00/19:30 場次' }
     ]
   },
   {
@@ -91,6 +115,13 @@ export const itineraryData = [
     foods: [
       { name: '暖暮拉麵', area: '那霸', type: '拉麵', note: '市區晚餐補給' },
       { name: '玉家そば', area: '南城', type: '沖繩麵', note: '南部行程常搭配' }
+    ],
+    timeline: [
+      { time: '09:00', activity: '首里城公園', note: '建議上午參觀，日照較舒適' },
+      { time: '11:30', activity: '玉家そば午餐', note: '南城市路線中間補給點' },
+      { time: '13:00', activity: '玉泉洞', note: '洞內恆溫，停留約 90 分鐘' },
+      { time: '16:30', activity: '瀨長島 Umikaji Terrace', note: '日落前到達較好拍照' },
+      { time: '18:30', activity: '那霸市區晚餐', note: '暖暮拉麵或國際通周邊店家' }
     ]
   },
   {
@@ -114,6 +145,13 @@ export const itineraryData = [
     foods: [
       { name: '豬肉蛋飯糰', area: '國際通/機場', type: '沖繩輕食', note: '快速補給首選' },
       { name: 'Blue Seal', area: '那霸', type: '甜點', note: '旅程收尾甜點' }
+    ],
+    timeline: [
+      { time: '09:30', activity: '國際通採買', note: '伴手禮與藥妝集中採購' },
+      { time: '11:00', activity: '牧志市場', note: '海鮮挑選 + 二樓代客料理' },
+      { time: '13:30', activity: '回飯店整理行李', note: '確認護照與登機文件' },
+      { time: '15:00', activity: '租車還車', note: '旺季排隊時間預留 45-60 分鐘' },
+      { time: '16:30', activity: '那霸機場報到', note: '買豬肉蛋飯糰 / Blue Seal 收尾' }
     ]
   }
 ]

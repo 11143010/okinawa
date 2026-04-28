@@ -83,6 +83,23 @@ const onImageError = (event, name) => {
             <p class="md:col-span-2"><b>停車提醒：</b>{{ currentDay.route.parkingTip }}</p>
           </div>
 
+          <div class="mt-4 rounded-xl border border-amber-100 bg-amber-50 p-3">
+            <h3 class="mb-2 font-semibold text-amber-800">詳細時間規劃表</h3>
+            <div class="space-y-2 text-sm">
+              <div
+                v-for="slot in currentDay.timeline"
+                :key="`${currentDay.day}-${slot.time}-${slot.activity}`"
+                class="grid grid-cols-12 items-start rounded-lg border border-amber-100 bg-white p-2"
+              >
+                <p class="col-span-3 font-semibold text-amber-700 md:col-span-2">{{ slot.time }}</p>
+                <div class="col-span-9 md:col-span-10">
+                  <p class="font-medium text-slate-800">{{ slot.activity }}</p>
+                  <p class="text-xs text-slate-500">{{ slot.note }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <iframe :src="mapUrl" class="mt-4 h-64 w-full rounded-xl border" />
         </Card>
       </section>
