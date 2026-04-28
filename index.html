@@ -24,7 +24,6 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Navbar / Header -->
     <header class="bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div>
@@ -35,7 +34,6 @@
                 <i class="fa-regular fa-calendar-days mr-1"></i> 7/25 - 8/1
             </div>
         </div>
-        <!-- Main Navigation Tabs -->
         <nav class="flex overflow-x-auto bg-blue-700 text-sm md:text-base">
             <button onclick="switchTab('itinerary')" class="tab-btn flex-1 py-3 px-4 font-semibold hover:bg-blue-800 bg-blue-800 focus:outline-none transition-colors" id="btn-itinerary">
                 <i class="fa-solid fa-map-location-dot mr-1"></i> 行程路線
@@ -49,39 +47,20 @@
         </nav>
     </header>
 
-    <!-- Main Content Area -->
     <main class="max-w-6xl mx-auto px-4 py-6">
-
-        <!-- TAB 1: 行程路線 (Itinerary) -->
         <section id="itinerary" class="tab-content active">
             <div class="flex flex-col md:flex-row gap-6">
-                <!-- Days Sidebar -->
                 <div class="w-full md:w-1/3 glass-card rounded-2xl shadow-lg p-4 h-fit">
                     <h2 class="text-lg font-bold mb-4 text-blue-600 border-b pb-2">選擇日程</h2>
-                    <ul class="space-y-2" id="day-list">
-                        <!-- JS generated days -->
-                    </ul>
+                    <ul class="space-y-2" id="day-list"></ul>
                 </div>
-                
-                <!-- Day Details -->
                 <div class="w-full md:w-2/3">
                     <div id="day-details" class="glass-card rounded-2xl shadow-lg p-6">
                         <h2 class="text-2xl font-bold text-gray-800 mb-2" id="detail-title">選擇左側日程</h2>
                         <p class="text-gray-500 mb-4" id="detail-desc">這裡將顯示該日的詳細景點與Mapcode。</p>
-                        
-                        <div id="detail-spots" class="space-y-4">
-                            <!-- JS generated spots -->
-                        </div>
-
-                        <div id="detail-route" class="mt-6 bg-blue-50 border border-blue-100 rounded-lg p-4">
-                            <!-- JS generated route -->
-                        </div>
-
-                        <div id="detail-foods" class="mt-6">
-                            <!-- JS generated foods -->
-                        </div>
-
-                        <!-- Map Placeholder -->
+                        <div id="detail-spots" class="space-y-4"></div>
+                        <div id="detail-route" class="mt-6 bg-blue-50 border border-blue-100 rounded-lg p-4"></div>
+                        <div id="detail-foods" class="mt-6"></div>
                         <div class="mt-6 rounded-lg overflow-hidden border border-gray-200 shadow-inner h-64 bg-gray-100 relative">
                             <iframe id="map-frame" class="w-full h-full" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Okinawa&t=&z=9&ie=UTF8&iwloc=&output=embed"></iframe>
                         </div>
@@ -90,7 +69,6 @@
             </div>
         </section>
 
-        <!-- TAB 2: 美食與景點總清單 -->
         <section id="lists" class="tab-content">
             <h2 class="text-2xl font-bold text-green-600 mb-6"><i class="fa-solid fa-map-pin mr-2"></i>沖繩自駕：沿途美食 & 人氣景點總清單</h2>
             <p class="text-sm text-gray-600 mb-6">不排住宿，直接給你「可一路吃一路玩」的大量清單。建議先從北部往南部安排，減少折返。</p>
@@ -106,10 +84,8 @@
             </div>
         </section>
 
-        <!-- TAB 3: 自駕與氣候 (Info) -->
         <section id="info" class="tab-content">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Weather -->
                 <div class="glass-card rounded-2xl shadow-lg p-6">
                     <h3 class="text-xl font-bold text-orange-500 mb-4"><i class="fa-solid fa-sun mr-2"></i>夏季氣候與防護 (7/25-8/1)</h3>
                     <ul class="list-disc pl-5 space-y-2 text-gray-700">
@@ -119,7 +95,6 @@
                         <li><strong>水分補充：</strong> 善用高密度便利商店補充補充電解質，預防熱衰竭。</li>
                     </ul>
                 </div>
-                <!-- Driving -->
                 <div class="glass-card rounded-2xl shadow-lg p-6">
                     <h3 class="text-xl font-bold text-blue-600 mb-4"><i class="fa-solid fa-road mr-2"></i>道路系統與導航規範</h3>
                     <ul class="list-disc pl-5 space-y-2 text-gray-700">
@@ -131,324 +106,92 @@
                     </ul>
                 </div>
             </div>
-            
-            <!-- Food Bonus -->
-            <div class="mt-6 glass-card rounded-2xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-green-600 mb-4"><i class="fa-solid fa-utensils mr-2"></i>沖繩長壽飲食推薦</h3>
-                <div class="flex flex-wrap gap-4">
-                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>阿古豬 (Agu):</strong> 百年古家 大家 (涮涮鍋)</span>
-                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>石垣牛:</strong> 琉球之牛 (北谷/恩納)</span>
-                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>沖繩麵 (Soba):</strong> 岸本食堂 (本部町)</span>
-                    <span class="bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200"><strong>輕食:</strong> 豬肉蛋飯糰 (機場/國際通)</span>
-                </div>
-            </div>
         </section>
-
     </main>
 
-    <!-- App Logic -->
     <script>
-        // 行程資料 (根據戰略報告提取)
         const itineraryData = [
-            {
-                day: "Day 1-2",
-                title: "北部山原森林的生態與地質探索",
-                desc: "抵達那霸後直奔北部。7/25-26 晚間可參加【名護夏日祭典】。此階段專注於世界自然遺產與最北端景觀。",
-                mapQuery: "Okinawa+Kunigami",
-                route: {
-                    start: "那霸機場",
-                    end: "名護/國頭住宿區",
-                    distance: "約 105-130 km",
-                    driveTime: "單日純開車約 2.5-3.5 小時",
-                    expressway: "建議走沖繩自動車道（那霸 IC → 許田 IC）再接國道 58",
-                    parkingTip: "北部景點停車相對容易，祭典日需提前卡位"
-                },
-                spots: [
-                    { name: "大石林山", mapcode: "728 675 895*56", address: "沖縄県国頭郡国頭村宜名真1241", note: "熱帶喀斯特地形，神話聖地。搭乘接駁車，免費停車。", icon: "fa-mountain" },
-                    { name: "邊戶岬 & 茅打斷崖", mapcode: "728 737 180*28", address: "沖縄県国頭郡国頭村辺戸", note: "本島最北端，眺望太平洋與東海交界。注意海風極強。", icon: "fa-water" },
-                    { name: "古宇利島 (心形岩)", mapcode: "485 751 179", address: "沖縄県国頭郡今帰仁村古宇利", note: "跨越古宇利大橋，欣賞「古宇利藍」。周邊需付費停車(約100-300円)。", icon: "fa-heart" },
-                    { name: "名護夏日祭典 (活動)", mapcode: "名護漁港", address: "沖縄県名護市城3丁目1 名護漁港", note: "7/25-26 週末限定。體驗港口煙火與屋台美食，提早下午3點前往。", icon: "fa-fire" }
-                ],
-                foods: [
-                    { name: "幸ちゃんそば", area: "名護", type: "沖繩麵", note: "湯頭清爽，適合長途開車後補鹽分。" },
-                    { name: "百年古家 大家", area: "名護", type: "阿古豬料理", note: "古民家氛圍，晚餐建議事前訂位。" },
-                    { name: "山原料理店（在地食堂）", area: "國頭", type: "地方定食", note: "主打苦瓜、海葡萄、島豆腐等在地食材。" }
-                ]
-            },
-            {
-                day: "Day 3",
-                title: "本部半島海洋工藝與生活美學",
-                desc: "探索世界級水族館與傳統防風林聚落，品嚐在地阿古豬。",
-                mapQuery: "Okinawa+Churaumi+Aquarium",
-                route: {
-                    start: "名護住宿區",
-                    end: "本部町住宿區",
-                    distance: "約 35-55 km",
-                    driveTime: "單日純開車約 1-1.5 小時",
-                    expressway: "以一般道路為主，串聯水族館與備瀨周邊",
-                    parkingTip: "水族館建議停 P7；熱門時段可先下客再停車"
-                },
-                spots: [
-                    { name: "美麗海水族館", mapcode: "553 075 797*74", address: "沖縄県国頭郡本部町石川424", note: "黑潮之海展缸。建議早上8:30或下午4點後進入避開人潮。停P7立體停車場。", icon: "fa-fish" },
-                    { name: "備瀨福木林道", mapcode: "導航至備瀨入口", address: "沖縄県国頭郡本部町備瀬389", note: "防風林綠色隧道，氣溫比外部低2-3度，適合午後騎單車。", icon: "fa-tree" },
-                    { name: "翡翠海灘 & 海豚秀", mapcode: "海洋博公園內", address: "沖縄県国頭郡本部町石川424 海洋博公園", note: "水族館外圍免費景點，7月下旬有機會遇到煙火大會(需購票)。", icon: "fa-umbrella-beach" }
-                ],
-                foods: [
-                    { name: "岸本食堂", area: "本部町", type: "沖繩麵", note: "經典老店，建議避開 12:00-13:30 尖峰。" },
-                    { name: "海人食堂", area: "本部港周邊", type: "海鮮丼/刺身", note: "白天補充海鮮蛋白質，停車方便。" },
-                    { name: "今歸仁咖啡館群", area: "今歸仁", type: "甜點/咖啡", note: "沿海景觀好，適合午後休息。" }
-                ]
-            },
-            {
-                day: "Day 4-5",
-                title: "中部西海岸異國融合與商業動態",
-                desc: "從自然景觀過渡至美日混合文化，進行水上活動與購物補給。",
-                mapQuery: "Okinawa+American+Village",
-                route: {
-                    start: "本部町",
-                    end: "恩納/北谷",
-                    distance: "約 70-95 km",
-                    driveTime: "單日純開車約 2-2.5 小時",
-                    expressway: "可走國道 58 海線；趕行程可改走高速分段",
-                    parkingTip: "美國村停車場多但傍晚易滿，建議16:30前抵達"
-                },
-                spots: [
-                    { name: "萬座毛 (恩納村)", mapcode: "206 312 038*55", address: "沖縄県国頭郡恩納村恩納2767", note: "經典象鼻岩石灰岩景觀。新館有空調與在地工藝品。收費約100円。", icon: "fa-camera" },
-                    { name: "真榮田岬 (青之洞窟)", mapcode: "恩納村南端", address: "沖縄県国頭郡恩納村真栄田469-1", note: "建議預約船潛進入避開人潮，因週末停車位極度緊張。", icon: "fa-water" },
-                    { name: "美國村 (北谷町)", mapcode: "33 526 450*63", address: "沖縄県中頭郡北谷町美浜", note: "美式西岸風格，落日步道看夕陽最佳。廣大免費公共停車區。", icon: "fa-store" },
-                    { name: "AEON MALL 來客夢", mapcode: "中城村", address: "沖縄県中頭郡北中城村ライカム1", note: "避暑首選，巨型商場一站式採買伴手禮 (LOFT, Bic Camera)。", icon: "fa-bag-shopping" }
-                ],
-                foods: [
-                    { name: "琉球の牛", area: "恩納/北谷", type: "石垣牛燒肉", note: "人氣高，建議提前預約晚餐時段。" },
-                    { name: "浜屋そば", area: "北谷", type: "沖繩麵", note: "可搭配美國村行程，午餐效率高。" },
-                    { name: "A&W 牧港/北谷", area: "中部", type: "美式速食", note: "在地連鎖代表，適合快速補給。" }
-                ]
-            },
-            {
-                day: "Day 6",
-                title: "南部文化核心與地質見證",
-                desc: "回歸琉球王國歷史，體驗鐘乳石洞與最新飛機觀景聖地。",
-                mapQuery: "Okinawa+Senagajima",
-                route: {
-                    start: "北谷/恩納",
-                    end: "那霸/瀨長島",
-                    distance: "約 45-70 km",
-                    driveTime: "單日純開車約 1.5-2 小時",
-                    expressway: "可走 58 號+市區道路；高峰期改走高速避塞車",
-                    parkingTip: "首里城及瀨長島週末壅塞，建議晨間先跑文化景點"
-                },
-                spots: [
-                    { name: "首里城", mapcode: "33 161 497*55", address: "沖縄県那覇市首里金城町1-2", note: "參觀重建參觀步道，見證匠人修復工藝。建議清晨抵達或預約停車。", icon: "fa-chess-rook" },
-                    { name: "文化王國與玉泉洞", mapcode: "南城市", address: "沖縄県南城市玉城前川1336", note: "避暑勝地，洞內恆溫21°C。必看大鼓舞(Eisa)表演。", icon: "fa-drum" },
-                    { name: "瀨長島 (Umikaji Terrace)", mapcode: "33 002 602*06", address: "沖縄県豊見城市瀬長174-6", note: "沖繩小希臘，吃幸福鬆餅看飛機起降與日落。週末沿線停車困難。", icon: "fa-plane" }
-                ],
-                foods: [
-                    { name: "暖暮拉麵 / 琉球新麵", area: "那霸", type: "拉麵/麵食", note: "逛完首里城後可快速用餐。" },
-                    { name: "玉家沖繩そば", area: "南城市", type: "沖繩麵", note: "順遊玉泉洞路線銜接自然。" },
-                    { name: "瀨長島海景餐酒館", area: "瀨長島", type: "夕陽餐廳", note: "邊看飛機邊吃晚餐，氣氛佳。" }
-                ]
-            },
-            {
-                day: "Day 7",
-                title: "那霸城市節奏與離境準備",
-                desc: "最後的城市採購、美食巡禮與還車物流整理。",
-                mapQuery: "Okinawa+Kokusai+Dori",
-                route: {
-                    start: "那霸市區",
-                    end: "那霸機場（還車/登機）",
-                    distance: "約 10-20 km",
-                    driveTime: "單日純開車約 30-60 分鐘",
-                    expressway: "不建議上高速，市區短程移動為主",
-                    parkingTip: "國際通周邊停車場多為計時收費，提早查好上限金額"
-                },
-                spots: [
-                    { name: "國際通 & 牧志公設市場", mapcode: "那霸市區", address: "沖縄県那覇市牧志3丁目", note: "奇蹟的一英里。可於市場買海鮮由二樓代工。若遇8/1可觀賞一萬人太鼓舞。", icon: "fa-shop" },
-                    { name: "那霸機場 (OKA) 離境", mapcode: "機場周邊租車點", address: "沖縄県那覇市鏡水150", note: "夏季還車潮易排隊，需提早抵達。二樓可買豬肉蛋飯糰做最後補給。", icon: "fa-plane-departure" }
-                ],
-                foods: [
-                    { name: "牧志市場二樓食堂", area: "國際通", type: "海鮮代客料理", note: "購買海鮮後現場代工，體驗感強。" },
-                    { name: "豬肉蛋飯糰", area: "國際通/機場", type: "沖繩輕食", note: "離境前最穩定的快速補給選擇。" },
-                    { name: "Blue Seal", area: "那霸", type: "冰淇淋", note: "作為旅程收尾甜點很適合。" }
-                ]
-            }
+            { day: "Day 1-2", title: "北部山原森林的生態與地質探索", desc: "抵達那霸後直奔北部。", mapQuery: "Okinawa+Kunigami", route: { start: "那霸機場", end: "名護/國頭", distance: "約 105-130 km", driveTime: "約 2.5-3.5 小時", expressway: "那霸 IC → 許田 IC", parkingTip: "祭典日需提前卡位" }, spots: [
+                { name: "大石林山", mapcode: "728 675 895*56", address: "沖縄県国頭郡国頭村宜名真1241", note: "熱帶喀斯特地形。", icon: "fa-mountain" },
+                { name: "邊戶岬", mapcode: "728 737 180*28", address: "沖縄県国頭郡国頭村辺戸", note: "本島最北端景觀。", icon: "fa-water" },
+                { name: "古宇利島 (心形岩)", mapcode: "485 751 179", address: "沖縄県国頭郡今帰仁村古宇利", note: "跨越古宇利大橋。", icon: "fa-heart" }
+            ], foods: [
+                { name: "幸ちゃんそば", area: "名護", type: "沖繩麵", note: "開車後補鹽分" },
+                { name: "百年古家 大家", area: "名護", type: "阿古豬", note: "建議預約" }
+            ]},
+            { day: "Day 3", title: "本部半島海洋工藝與生活美學", desc: "探索世界級水族館。", mapQuery: "Okinawa+Churaumi+Aquarium", route: { start: "名護", end: "本部町", distance: "約 35-55 km", driveTime: "約 1-1.5 小時", expressway: "一般道路", parkingTip: "建議停 P7" }, spots: [
+                { name: "美麗海水族館", mapcode: "553 075 797*74", address: "沖縄県国頭郡本部町石川424", note: "黑潮大水槽", icon: "fa-fish" },
+                { name: "備瀨福木林道", mapcode: "導航至備瀨入口", address: "沖縄県国頭郡本部町備瀬389", note: "綠色隧道", icon: "fa-tree" }
+            ], foods: [
+                { name: "岸本食堂", area: "本部町", type: "沖繩麵", note: "經典老店" }
+            ]},
+            { day: "Day 4-5", title: "中部西海岸異國融合", desc: "美國村與恩納海岸。", mapQuery: "Okinawa+American+Village", route: { start: "本部町", end: "恩納/北谷", distance: "約 70-95 km", driveTime: "約 2-2.5 小時", expressway: "58號海線", parkingTip: "美國村傍晚易滿" }, spots: [
+                { name: "萬座毛", mapcode: "206 312 038*55", address: "沖縄県国頭郡恩納村恩納2767", note: "象鼻岩", icon: "fa-camera" },
+                { name: "美國村", mapcode: "33 526 450*63", address: "沖縄県中頭郡北谷町美浜", note: "夕陽夜景", icon: "fa-store" }
+            ], foods: [
+                { name: "琉球の牛", area: "恩納/北谷", type: "石垣牛", note: "建議預約" }
+            ]},
+            { day: "Day 6-7", title: "南部文化與返程", desc: "首里城、南城與那霸。", mapQuery: "Okinawa+Naha", route: { start: "北谷/恩納", end: "那霸機場", distance: "約 55-80 km", driveTime: "約 2 小時", expressway: "58 號+市區", parkingTip: "市區停車提早查" }, spots: [
+                { name: "首里城", mapcode: "33 161 497*55", address: "沖縄県那覇市首里金城町1-2", note: "琉球歷史地標", icon: "fa-chess-rook" },
+                { name: "瀨長島", mapcode: "33 002 602*06", address: "沖縄県豊見城市瀬長174-6", note: "看飛機起降", icon: "fa-plane" },
+                { name: "國際通", mapcode: "那霸市區", address: "沖縄県那覇市牧志3丁目", note: "伴手禮採買", icon: "fa-shop" }
+            ], foods: [
+                { name: "牧志市場二樓食堂", area: "那霸", type: "海鮮", note: "現買現煮" },
+                { name: "豬肉蛋飯糰", area: "國際通/機場", type: "輕食", note: "離境前補給" }
+            ]}
         ];
 
-        const famousFoods = [
-            "那霸｜豬肉蛋飯糰（Pork Tamago）｜機場與國際通都方便",
-            "那霸｜第一牧志公設市場二樓代客料理｜海鮮現買現煮",
-            "那霸｜ジャッキーステーキハウス｜沖繩經典牛排",
-            "那霸｜暖暮拉麵｜深夜補給首選",
-            "那霸｜ブルーシール Blue Seal｜沖繩冰淇淋",
-            "浦添｜高江洲そば｜在地人愛店沖繩麵",
-            "宜野灣｜キングタコス（King Tacos）｜墨西哥飯/塔可飯",
-            "北谷｜浜屋そば｜人氣沖繩麵",
-            "北谷｜ZHYVAGO COFFEE ROASTERY｜海景咖啡",
-            "北谷/恩納｜琉球の牛｜石垣牛燒肉",
-            "恩納｜なかむらそば｜海葡萄沖繩麵",
-            "恩納｜SEA SIDE DRIVE IN｜美式沖繩混搭老店",
-            "讀谷｜花織そば｜清爽湯頭沖繩麵",
-            "名護｜百年古家 大家｜阿古豬與古民家氛圍",
-            "名護｜幸ちゃんそば｜北部自駕補給站",
-            "名護｜新山食堂｜平價在地定食",
-            "本部｜岸本食堂｜百年沖繩麵老店",
-            "本部｜きしもと食堂八重岳店周邊小吃街｜可順路補給",
-            "今歸仁｜On the Beach CAFE｜海景下午茶",
-            "古宇利島｜蝦蝦飯（Shrimp Wagon）｜橋頭人氣美食",
-            "古宇利島｜海景咖啡與水果冰店群｜夏天降溫首選",
-            "南城｜玉家そば｜玉泉洞路線熱門午餐",
-            "南城｜Cafe くるくま｜絕景海景咖啡",
-            "糸滿｜魚市場食堂群｜新鮮生魚片/海鮮丼",
-            "瀨長島｜幸福鬆餅與海景餐酒館｜看飛機起降"
-        ];
+        const famousFoods = ["那霸｜豬肉蛋飯糰", "那霸｜第一牧志公設市場", "北谷｜浜屋そば", "名護｜百年古家 大家", "本部｜岸本食堂", "南城｜Cafe くるくま", "瀨長島｜海景餐酒館"];
+        const famousSpots = ["國頭｜大石林山", "今歸仁｜古宇利大橋", "本部｜沖繩美麗海水族館", "恩納｜萬座毛", "北谷｜美國村", "那霸｜首里城", "豐見城｜瀨長島"];
 
-        const famousSpots = [
-            "國頭｜大石林山｜奇岩步道、自然能量點",
-            "國頭｜辺戶岬｜沖繩本島最北端景觀",
-            "國頭｜ヤンバル國立公園森林區｜生態觀察",
-            "今歸仁｜今歸仁城跡｜世界遺產古城牆",
-            "今歸仁｜古宇利大橋｜必拍海上長橋",
-            "古宇利島｜心形岩（ティーヌ浜）｜情侶熱門點",
-            "本部｜沖繩美麗海水族館｜黑潮大水槽",
-            "本部｜備瀨福木林道｜綠色隧道散策",
-            "本部｜海洋博公園｜親子友善免費區域多",
-            "名護｜Neo Park Okinawa｜親子互動動物園",
-            "名護｜名護鳳梨園｜觀光小火車",
-            "恩納｜萬座毛｜象鼻岩絕景",
-            "恩納｜真榮田岬青之洞窟｜浮潛潛水聖地",
-            "讀谷｜殘波岬｜燈塔與夕陽",
-            "讀谷｜體驗王國MURASAKI MURA｜琉球文化體驗",
-            "北谷｜美國村｜購物、夕陽、夜景",
-            "沖繩市｜AEON MALL 來客夢｜雨天備案最強",
-            "北中城｜中城城跡｜世界遺產高台視野",
-            "浦添｜港川外人住宅街｜文青雜貨咖啡",
-            "那霸｜首里城公園｜琉球歷史核心",
-            "那霸｜國際通｜伴手禮與餐廳最密集",
-            "那霸｜波上宮｜市區海景神社",
-            "南城｜玉泉洞｜洞內避暑、鐘乳石奇景",
-            "南城｜知念岬公園｜草地海景視野遼闊",
-            "糸滿｜沖繩和平祈念公園｜歷史紀念園區",
-            "豐見城｜瀨長島 Umikaji Terrace｜機場旁看海看飛機"
-        ];
-
-        // 頁籤切換邏輯
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-blue-800');
-                el.classList.add('bg-blue-700');
-            });
-            
+            document.querySelectorAll('.tab-btn').forEach(el => { el.classList.remove('bg-blue-800'); el.classList.add('bg-blue-700'); });
             document.getElementById(tabId).classList.add('active');
             document.getElementById('btn-' + tabId).classList.add('bg-blue-800');
             document.getElementById('btn-' + tabId).classList.remove('bg-blue-700');
         }
 
-        // 渲染行程清單
         function renderItinerary() {
             const dayList = document.getElementById('day-list');
-            
             itineraryData.forEach((data, index) => {
                 const li = document.createElement('li');
-                li.innerHTML = `
-                    <button onclick="showDayDetails(${index})" class="w-full text-left p-3 rounded-xl border border-blue-100 bg-gradient-to-r from-white to-sky-50 hover:shadow-md hover:-translate-y-0.5 focus:bg-blue-100 focus:border-blue-500 transition-all font-medium text-gray-700">
-                        <i class="fa-regular fa-calendar-check text-blue-500 w-5"></i> ${data.day} <span class="block text-xs text-gray-500 mt-1 font-normal truncate">${data.title}</span>
-                    </button>
-                `;
+                li.innerHTML = `<button onclick="showDayDetails(${index})" class="w-full text-left p-3 rounded-xl border border-blue-100 bg-gradient-to-r from-white to-sky-50 hover:shadow-md transition-all font-medium text-gray-700"><i class="fa-regular fa-calendar-check text-blue-500 w-5"></i> ${data.day} <span class="block text-xs text-gray-500 mt-1 font-normal truncate">${data.title}</span></button>`;
                 dayList.appendChild(li);
             });
-
-            // 預設載入第一天
             showDayDetails(0);
         }
 
         function renderMasterLists() {
             const foodList = document.getElementById('master-food-list');
             const spotList = document.getElementById('master-spot-list');
-
-            foodList.innerHTML = famousFoods.map(item => `
-                <div class="bg-green-50 border border-green-100 rounded-xl px-3 py-2 shadow-sm">${item}</div>
-            `).join('');
-
+            foodList.innerHTML = famousFoods.map(item => `<div class="bg-green-50 border border-green-100 rounded-xl px-3 py-2 shadow-sm">${item}</div>`).join('');
             spotList.innerHTML = famousSpots.map(item => {
-                const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.replaceAll('｜', ' '))}`;
+                const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item)}`;
                 const imageUrl = `https://source.unsplash.com/500x320/?${encodeURIComponent(`okinawa ${item}`)}`;
-                return `
-                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-3">
-                        <img src="${imageUrl}" alt="${item}" class="spot-image mb-2" loading="lazy">
-                        <p class="mb-2">${item}</p>
-                        <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="pill-link bg-blue-600 text-white hover:bg-blue-700">
-                            <i class="fa-brands fa-google"></i> Google 地址
-                        </a>
-                    </div>
-                `;
+                return `<div class="bg-blue-50 border border-blue-100 rounded-xl p-3"><img src="${imageUrl}" alt="${item}" class="spot-image mb-2" loading="lazy"><p class="mb-2">${item}</p><a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="pill-link bg-blue-600 text-white hover:bg-blue-700"><i class="fa-brands fa-google"></i> Google 地址</a></div>`;
             }).join('');
         }
 
-        // 顯示單日詳細資訊
         function showDayDetails(index) {
             const data = itineraryData[index];
             document.getElementById('detail-title').innerText = `${data.day}：${data.title}`;
             document.getElementById('detail-desc').innerText = data.desc;
-            
-            // 更新地圖 (使用 Google Maps Embed API 佔位)
             document.getElementById('map-frame').src = `https://maps.google.com/maps?q=${data.mapQuery}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
 
-            // 渲染景點
             const spotsContainer = document.getElementById('detail-spots');
             spotsContainer.innerHTML = '';
-            
             data.spots.forEach(spot => {
-                const photo = spot.image || `https://source.unsplash.com/600x400/?${encodeURIComponent(`okinawa ${spot.name}`)}`;
-                const googleMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.address || `${spot.name} Okinawa`)}`;
-                spotsContainer.innerHTML += `
-                    <div class="border border-blue-100 p-3 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-sm">
-                        <img src="${photo}" alt="${spot.name}" class="spot-image mb-3" loading="lazy">
-                        <div class="flex items-center justify-between mb-1">
-                            <h4 class="font-bold text-gray-800"><i class="fa-solid ${spot.icon} text-blue-500 mr-2 w-4"></i>${spot.name}</h4>
-                            <span class="mapcode-badge" title="Mapcode"><i class="fa-solid fa-location-crosshairs text-xs mr-1"></i>${spot.mapcode}</span>
-                        </div>
-                        <p class="text-sm text-gray-600">${spot.note}</p>
-                        <p class="text-xs text-gray-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${spot.address || 'Okinawa'}</p>
-                        <a href="${googleMapUrl}" target="_blank" rel="noopener noreferrer" class="pill-link mt-2 bg-blue-600 text-white hover:bg-blue-700">
-                            <i class="fa-brands fa-google"></i> Google 地址
-                        </a>
-                    </div>
-                `;
+                const photo = `https://source.unsplash.com/600x400/?${encodeURIComponent(`okinawa ${spot.name}`)}`;
+                const googleMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.address)}`;
+                spotsContainer.innerHTML += `<div class="border border-blue-100 p-3 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-sm"><img src="${photo}" alt="${spot.name}" class="spot-image mb-3" loading="lazy"><div class="flex items-center justify-between mb-1"><h4 class="font-bold text-gray-800"><i class="fa-solid ${spot.icon} text-blue-500 mr-2 w-4"></i>${spot.name}</h4><span class="mapcode-badge"><i class="fa-solid fa-location-crosshairs text-xs mr-1"></i>${spot.mapcode}</span></div><p class="text-sm text-gray-600">${spot.note}</p><p class="text-xs text-gray-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${spot.address}</p><a href="${googleMapUrl}" target="_blank" rel="noopener noreferrer" class="pill-link mt-2 bg-blue-600 text-white hover:bg-blue-700"><i class="fa-brands fa-google"></i> Google 地址</a></div>`;
             });
 
-            // 渲染路線摘要
-            const routeContainer = document.getElementById('detail-route');
-            routeContainer.innerHTML = `
-                <h3 class="text-lg font-bold text-blue-700 mb-3"><i class="fa-solid fa-route mr-2"></i>自駕路線建議</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
-                    <div class="bg-white rounded p-3 border border-blue-100"><strong>起訖：</strong>${data.route.start} → ${data.route.end}</div>
-                    <div class="bg-white rounded p-3 border border-blue-100"><strong>建議里程：</strong>${data.route.distance}</div>
-                    <div class="bg-white rounded p-3 border border-blue-100"><strong>開車時間：</strong>${data.route.driveTime}</div>
-                    <div class="bg-white rounded p-3 border border-blue-100"><strong>道路建議：</strong>${data.route.expressway}</div>
-                </div>
-                <p class="mt-3 text-sm text-blue-900"><i class="fa-solid fa-square-parking mr-1"></i><strong>停車提醒：</strong>${data.route.parkingTip}</p>
-            `;
-
-            // 渲染沿途美食
-            const foodContainer = document.getElementById('detail-foods');
-            foodContainer.innerHTML = `
-                <h3 class="text-lg font-bold text-green-700 mb-3"><i class="fa-solid fa-bowl-food mr-2"></i>沿途美食推薦</h3>
-                <div class="space-y-3">
-                    ${data.foods.map(food => `
-                        <div class="bg-green-50 border border-green-100 rounded-lg p-3">
-                            <p class="font-semibold text-gray-800">${food.name} <span class="text-xs text-green-700">(${food.type})</span></p>
-                            <p class="text-sm text-gray-600">${food.area}｜${food.note}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
+            document.getElementById('detail-route').innerHTML = `<h3 class="text-lg font-bold text-blue-700 mb-3"><i class="fa-solid fa-route mr-2"></i>自駕路線建議</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700"><div class="bg-white rounded p-3 border border-blue-100"><strong>起訖：</strong>${data.route.start} → ${data.route.end}</div><div class="bg-white rounded p-3 border border-blue-100"><strong>建議里程：</strong>${data.route.distance}</div><div class="bg-white rounded p-3 border border-blue-100"><strong>開車時間：</strong>${data.route.driveTime}</div><div class="bg-white rounded p-3 border border-blue-100"><strong>道路建議：</strong>${data.route.expressway}</div></div><p class="mt-3 text-sm text-blue-900"><i class="fa-solid fa-square-parking mr-1"></i><strong>停車提醒：</strong>${data.route.parkingTip}</p>`;
+            document.getElementById('detail-foods').innerHTML = `<h3 class="text-lg font-bold text-green-700 mb-3"><i class="fa-solid fa-bowl-food mr-2"></i>沿途美食推薦</h3><div class="space-y-3">${data.foods.map(food => `<div class="bg-green-50 border border-green-100 rounded-lg p-3"><p class="font-semibold text-gray-800">${food.name} <span class="text-xs text-green-700">(${food.type})</span></p><p class="text-sm text-gray-600">${food.area}｜${food.note}</p></div>`).join('')}</div>`;
         }
 
-        // 初始化
-        window.onload = () => {
-            renderItinerary();
-            renderMasterLists();
-        };
+        window.onload = () => { renderItinerary(); renderMasterLists(); };
     </script>
 </body>
 </html>
